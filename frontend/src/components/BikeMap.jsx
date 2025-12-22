@@ -446,6 +446,7 @@ import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { PlusCircle, X, Camera, Trash2, MapPin, UploadCloud } from 'lucide-react';
+import Footer from './Footer';
 
 
 const username = 'yve';
@@ -563,146 +564,150 @@ const BikeMap = () => {
     };
 
     return (
-        <div className="h-screen w-full flex flex-col font-sans overflow-hidden bg-gray-50">
+        <div>
 
-            {/* --- HEADER --- */}
-            <header className="bg-green-900 text-white p-4 shadow-lg z-[1001] flex justify-between items-center">
-                <div className="flex items-center gap-3">
-                    <div className="bg-white p-1.5 rounded-lg text-green-900"><MapPin size={24} /></div>
-                    <h1 className="text-xl font-black uppercase tracking-tight">EcoTrack YDE 🇨🇲</h1>
-                </div>
-                <button 
-                    onClick={() => setShowForm(true)}
-                    className="bg-green-500 hover:bg-green-400 text-white px-5 py-2 rounded-full font-bold flex items-center gap-2 transition-all shadow-md"
-                >
-                    <PlusCircle size={20} /> Nouveau Vélo
-                </button>
-            </header>
-
-            <div className="flex flex-grow h-full relative">
-
-                {/* --- FORMULAIRE D'AJOUT --- */}
-                {showForm && (
-                    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[2000] p-4">
-                        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden overflow-y-auto max-h-[90vh]">
-                            <div className="bg-green-800 p-4 text-white flex justify-between items-center">
-                                <h2 className="font-bold text-lg">Nouveau vélo à Yaoundé</h2>
-                                <button onClick={() => setShowForm(false)} className="hover:bg-green-700 rounded-full p-1"><X size={24} /></button>
-                            </div>
-                            <form onSubmit={handleAddBike} className="p-6 space-y-4">
-                                <div className="space-y-1">
-                                    <label className="text-xs font-bold text-gray-500 uppercase">Numéro de série</label>
-                                    <input required placeholder="ex: YDE-102" className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-green-500" 
-                                        onChange={e => setNewBike({...newBike, serialNumber: e.target.value})} />
+            <div className="h-screen w-full flex flex-col font-sans overflow-hidden bg-gray-50">
+    
+                {/* --- HEADER --- */}
+                <header className="bg-green-900 text-white p-4 shadow-lg z-[1001] flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                        <div className="bg-white p-1.5 rounded-lg text-green-900"><MapPin size={24} /></div>
+                        <h1 className="text-xl font-black uppercase tracking-tight">EcoTrack YDE 🇨🇲</h1>
+                    </div>
+                    <button 
+                        onClick={() => setShowForm(true)}
+                        className="bg-green-500 hover:bg-green-400 text-white px-5 py-2 rounded-full font-bold flex items-center gap-2 transition-all shadow-md"
+                    >
+                        <PlusCircle size={20} /> Nouveau Vélo
+                    </button>
+                </header>
+    
+                <div className="flex flex-grow h-full relative">
+    
+                    {/* --- FORMULAIRE D'AJOUT --- */}
+                    {showForm && (
+                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[2000] p-4">
+                            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden overflow-y-auto max-h-[90vh]">
+                                <div className="bg-green-800 p-4 text-white flex justify-between items-center">
+                                    <h2 className="font-bold text-lg">Nouveau vélo à Yaoundé</h2>
+                                    <button onClick={() => setShowForm(false)} className="hover:bg-green-700 rounded-full p-1"><X size={24} /></button>
                                 </div>
-                                
-                                <div className="space-y-1">
-                                    <label className="text-xs font-bold text-gray-500 uppercase">Modèle</label>
-                                    <input required placeholder="Modèle du vélo" className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-green-500" 
-                                        onChange={e => setNewBike({...newBike, model: e.target.value})} />
-                                </div>
-
-                                {/* SECTION UPLOAD IMAGE */}
-                                <div className="space-y-1">
-                                    <label className="text-xs font-bold text-gray-500 uppercase">Photo du vélo</label>
-                                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:bg-gray-50 transition cursor-pointer relative">
-                                        <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" accept="image/*"
-                                            onChange={(e) => setSelectedFile(e.target.files[0])} />
-                                        <div className="flex flex-col items-center gap-2">
-                                            <UploadCloud className="text-gray-400" size={32} />
-                                            <span className="text-sm text-gray-600">
-                                                {selectedFile ? selectedFile.name : "Cliquez pour choisir un fichier"}
-                                            </span>
+                                <form onSubmit={handleAddBike} className="p-6 space-y-4">
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-bold text-gray-500 uppercase">Numéro de série</label>
+                                        <input required placeholder="ex: YDE-102" className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-green-500" 
+                                            onChange={e => setNewBike({...newBike, serialNumber: e.target.value})} />
+                                    </div>
+                                    
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-bold text-gray-500 uppercase">Modèle</label>
+                                        <input required placeholder="Modèle du vélo" className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-green-500" 
+                                            onChange={e => setNewBike({...newBike, model: e.target.value})} />
+                                    </div>
+    
+                                    {/* SECTION UPLOAD IMAGE */}
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-bold text-gray-500 uppercase">Photo du vélo</label>
+                                        <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:bg-gray-50 transition cursor-pointer relative">
+                                            <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" accept="image/*"
+                                                onChange={(e) => setSelectedFile(e.target.files[0])} />
+                                            <div className="flex flex-col items-center gap-2">
+                                                <UploadCloud className="text-gray-400" size={32} />
+                                                <span className="text-sm text-gray-600">
+                                                    {selectedFile ? selectedFile.name : "Cliquez pour choisir un fichier"}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-4">
-                                    <input type="number" step="any" placeholder="Latitude" className="border p-3 rounded-lg" 
-                                        onChange={e => setNewBike({...newBike, latitude: parseFloat(e.target.value)})} required />
-                                    <input type="number" step="any" placeholder="Longitude" className="border p-3 rounded-lg" 
-                                        onChange={e => setNewBike({...newBike, longitude: parseFloat(e.target.value)})} required />
-                                </div>
-
-                                <button 
-                                    type="submit" 
-                                    disabled={uploading}
-                                    className={`w-full ${uploading ? 'bg-gray-400' : 'bg-green-700 hover:bg-green-800'} text-white font-bold py-4 rounded-xl shadow-lg transition-all`}
-                                >
-                                    {uploading ? "Chargement de l'image..." : "Enregistrer le vélo"}
-                                </button>
-                            </form>
+    
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <input type="number" step="any" placeholder="Latitude" className="border p-3 rounded-lg" 
+                                            onChange={e => setNewBike({...newBike, latitude: parseFloat(e.target.value)})} required />
+                                        <input type="number" step="any" placeholder="Longitude" className="border p-3 rounded-lg" 
+                                            onChange={e => setNewBike({...newBike, longitude: parseFloat(e.target.value)})} required />
+                                    </div>
+    
+                                    <button 
+                                        type="submit" 
+                                        disabled={uploading}
+                                        className={`w-full ${uploading ? 'bg-gray-400' : 'bg-green-700 hover:bg-green-800'} text-white font-bold py-4 rounded-xl shadow-lg transition-all`}
+                                    >
+                                        {uploading ? "Chargement de l'image..." : "Enregistrer le vélo"}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                )}
-
-                {/* --- SIDEBAR --- */}
-                <aside className="w-80 bg-white border-r shadow-2xl flex flex-col z-10 overflow-hidden">
-                    <div className="p-5 border-b bg-gray-50">
-                        <label className="flex items-center justify-between bg-white p-3 rounded-xl border cursor-pointer hover:shadow-sm">
-                            <span className="text-sm font-bold text-gray-700">Batteries faibles</span>
-                            <input type="checkbox" checked={filterLowBattery} onChange={() => setFilterLowBattery(!filterLowBattery)} className="w-5 h-5 accent-red-600" />
-                        </label>
-                    </div>
-                    <div className="flex-grow overflow-y-auto">
-                        {displayedBikes.map(bike => (
-                            <div key={bike.id} onClick={() => centerOnBike(bike.latitude, bike.longitude)} className="p-4 border-b hover:bg-green-50 cursor-pointer transition flex gap-3 group">
-                                <div className="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 border">
-                                    {bike.imageUrl ? (
-                                        <img src={bike.imageUrl} className="w-full h-full object-cover" alt="bike" />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-gray-300"><Camera size={20}/></div>
-                                    )}
-                                </div>
-                                <div className="flex-grow min-w-0">
-                                    <div className="flex justify-between items-start">
-                                        <h4 className="font-bold text-gray-900 truncate">{bike.serialNumber}</h4>
-                                        <button onClick={(e) => handleDelete(e, bike.id)} className="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition">
-                                            <Trash2 size={16} />
-                                        </button>
+                    )}
+    
+                    {/* --- SIDEBAR --- */}
+                    <aside className="w-80 bg-white border-r shadow-2xl flex flex-col z-10 overflow-hidden">
+                        <div className="p-5 border-b bg-gray-50">
+                            <label className="flex items-center justify-between bg-white p-3 rounded-xl border cursor-pointer hover:shadow-sm">
+                                <span className="text-sm font-bold text-gray-700">Batteries faibles</span>
+                                <input type="checkbox" checked={filterLowBattery} onChange={() => setFilterLowBattery(!filterLowBattery)} className="w-5 h-5 accent-red-600" />
+                            </label>
+                        </div>
+                        <div className="flex-grow overflow-y-auto">
+                            {displayedBikes.map(bike => (
+                                <div key={bike.id} onClick={() => centerOnBike(bike.latitude, bike.longitude)} className="p-4 border-b hover:bg-green-50 cursor-pointer transition flex gap-3 group">
+                                    <div className="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 border">
+                                        {bike.imageUrl ? (
+                                            <img src={bike.imageUrl} className="w-full h-full object-cover" alt="bike" />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-gray-300"><Camera size={20}/></div>
+                                        )}
                                     </div>
-                                    <p className="text-[11px] text-gray-500 truncate">{bike.model}</p>
-                                    <div className="flex items-center gap-1 mt-1">
-                                        <div className="h-1.5 flex-grow rounded-full bg-gray-100">
-                                            <div className={`h-full rounded-full ${bike.batteryLevel < 20 ? 'bg-red-500' : 'bg-green-500'}`} style={{width: `${bike.batteryLevel}%`}}></div>
-                                        </div>
-                                        <span className="text-[10px] font-bold text-gray-600">{bike.batteryLevel}%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </aside>
-
-                {/* --- MAP --- */}
-                <main className="flex-grow relative">
-                    <MapContainer center={[3.8480, 11.5021]} zoom={13} className="h-full w-full" ref={setMap}>
-                        <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" attribution='&copy; OSM contributors' />
-                        {displayedBikes.map(bike => (
-                            <Marker key={bike.id} position={[bike.latitude, bike.longitude]} icon={createBikeIcon(bike.batteryLevel < 20 ? 'red' : 'green')}>
-                                <Popup>
-                                    <div className="w-48 font-sans">
-                                        {bike.imageUrl && <img src={bike.imageUrl} className="w-full h-28 object-cover rounded-lg mb-2 shadow-sm" alt="velo" />}
+                                    <div className="flex-grow min-w-0">
                                         <div className="flex justify-between items-start">
-                                            <h3 className="font-bold text-gray-900 m-0">{bike.model}</h3>
-                                            <span className={`text-[10px] px-2 py-0.5 rounded text-white font-bold ${bike.batteryLevel < 20 ? 'bg-red-500' : 'bg-green-500'}`}>
-                                                {bike.batteryLevel}%
-                                            </span>
+                                            <h4 className="font-bold text-gray-900 truncate">{bike.serialNumber}</h4>
+                                            <button onClick={(e) => handleDelete(e, bike.id)} className="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition">
+                                                <Trash2 size={16} />
+                                            </button>
                                         </div>
-                                        <p className="text-xs text-gray-500 mb-2 font-mono">{bike.serialNumber}</p>
-                                        <button 
-                                            onClick={(e) => handleDelete(e, bike.id)} 
-                                            className="w-full flex items-center justify-center gap-1 bg-red-50 hover:bg-red-100 text-red-600 text-[11px] py-1.5 rounded transition font-bold border-t border-red-100"
-                                        >
-                                            <Trash2 size={12} /> Supprimer du système
-                                        </button>
+                                        <p className="text-[11px] text-gray-500 truncate">{bike.model}</p>
+                                        <div className="flex items-center gap-1 mt-1">
+                                            <div className="h-1.5 flex-grow rounded-full bg-gray-100">
+                                                <div className={`h-full rounded-full ${bike.batteryLevel < 20 ? 'bg-red-500' : 'bg-green-500'}`} style={{width: `${bike.batteryLevel}%`}}></div>
+                                            </div>
+                                            <span className="text-[10px] font-bold text-gray-600">{bike.batteryLevel}%</span>
+                                        </div>
                                     </div>
-                                </Popup>
-                            </Marker>
-                        ))}
-                    </MapContainer>
-                </main>
+                                </div>
+                            ))}
+                        </div>
+                    </aside>
+    
+                    {/* --- MAP --- */}
+                    <main className="flex-grow relative">
+                        <MapContainer center={[3.8480, 11.5021]} zoom={13} className="h-full w-full" ref={setMap}>
+                            <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" attribution='&copy; OSM contributors' />
+                            {displayedBikes.map(bike => (
+                                <Marker key={bike.id} position={[bike.latitude, bike.longitude]} icon={createBikeIcon(bike.batteryLevel < 20 ? 'red' : 'green')}>
+                                    <Popup>
+                                        <div className="w-48 font-sans">
+                                            {bike.imageUrl && <img src={bike.imageUrl} className="w-full h-28 object-cover rounded-lg mb-2 shadow-sm" alt="velo" />}
+                                            <div className="flex justify-between items-start">
+                                                <h3 className="font-bold text-gray-900 m-0">{bike.model}</h3>
+                                                <span className={`text-[10px] px-2 py-0.5 rounded text-white font-bold ${bike.batteryLevel < 20 ? 'bg-red-500' : 'bg-green-500'}`}>
+                                                    {bike.batteryLevel}%
+                                                </span>
+                                            </div>
+                                            <p className="text-xs text-gray-500 mb-2 font-mono">{bike.serialNumber}</p>
+                                            <button 
+                                                onClick={(e) => handleDelete(e, bike.id)} 
+                                                className="w-full flex items-center justify-center gap-1 bg-red-50 hover:bg-red-100 text-red-600 text-[11px] py-1.5 rounded transition font-bold border-t border-red-100"
+                                            >
+                                                <Trash2 size={12} /> Supprimer du système
+                                            </button>
+                                        </div>
+                                    </Popup>
+                                </Marker>
+                            ))}
+                        </MapContainer>
+                    </main>
+                </div>
             </div>
+            <Footer bikes={bikes} currentUser='THIAKOU'/>
         </div>
     );
 };
