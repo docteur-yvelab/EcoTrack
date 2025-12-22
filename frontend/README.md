@@ -1,16 +1,40 @@
-# React + Vite
+# 🚲 EcoTrack YDE - Gestion de Flotte
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**EcoTrack YDE** est un prototype de tableau de bord pour la gestion d'une flotte de vélos électriques à **Yaoundé, Cameroun**. Ce projet a été réalisé dans le cadre d'un **exercice personnel** pour maîtriser l'architecture Full-Stack.
 
-Currently, two official plugins are available:
+## 🚀 Fonctionnalités
+- 📍 **Géolocalisation** : Visualisation en temps réel sur carte Leaflet.
+- ⚡ **WebSockets** : Mise à jour du niveau de batterie sans rafraîchir la page.
+- 📸 **Gestion Image** : Upload de photos réelles stockées sur serveur.
+- 🔐 **Sécurité** : Accès protégé par Spring Security (Basic Auth).
+- 🗄️ **Base de Données** : Persistance robuste avec PostgreSQL.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Stack Technique
+- **Frontend** : React + Vite, Tailwind CSS, Leaflet.
+- **Backend** : Spring Boot, Spring Security, Hibernate.
+- **Base de données** : PostgreSQL.
+- **Communication** : Axios (REST) & Stomp (WebSockets).
 
-## React Compiler
+## 🔧 Installation locale
+1. **Base de données** : Créer une base nommée `ecotrack_db` dans h2.
+2. **Backend** : 
+   - Configurer les identifiants dans `src/main/resources/application.properties`.
+   - Créer un dossier `uploads/` à la racine.
+   - Lancer : `./mvnw spring-boot:run`.
+3. **Frontend** : 
+   - `npm install`
+   - `npm run dev`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🌍 Déploiement
+Le projet est configuré pour être déployable sur des plateformes comme **Heroku**, **Render** ou un **VPS** :
+- Les images sont servies via un `ResourceHandler` Spring.
+- La base de données est prête pour un environnement de production via h2.
 
-## Expanding the ESLint configuration
+## 📧 Contact
+**Développeur** : [Ton Nom/Pseudo]
+- **Projet** : Exercice personnel - EcoTrack YDE
+- **Localisation** : Yaoundé, Cameroun 🇨🇲
+- **WhatsApp** : +237 694 63 73 42
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+*Ce projet est une démonstration technique et ne doit pas être utilisé en production sans une configuration de sécurité avancée (JWT, SSL).*

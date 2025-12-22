@@ -447,6 +447,14 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { PlusCircle, X, Camera, Trash2, MapPin, UploadCloud } from 'lucide-react';
 
+
+const username = 'yve';
+const password = 'ecotrack237';
+const authHeader = 'Basic ' + btoa(`${username}:${password}`);
+
+// Configure Axios pour envoyer le header partout
+axios.defaults.headers.common['Authorization'] = authHeader;
+
 // Configuration des icônes de marqueurs colorés
 const createBikeIcon = (color) => {
     return new L.Icon({
