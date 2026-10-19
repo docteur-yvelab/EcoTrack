@@ -1,16 +1,16 @@
-# EcoTrack 🇨🇲
+# EcoTrack
 
-**Système de gestion de flotte de vélos électriques à Yaoundé** — Application full-stack pour le suivi temps réel, la géolocalisation et la maintenance de vélos en libre-service.
-
----
-
-## 📋 Vue d'ensemble
-
-EcoTrack est une plateforme de gestion de flotte de vélos électriques conçue pour le contexte urbain de Yaoundé (Cameroun). Elle permet aux opérateurs de visualiser la flotte sur une carte interactive, surveiller les niveaux de batterie, ajouter/supprimer des vélos, et uploader des photos — le tout avec des mises à jour temps réel via WebSocket.
+**Systeme de gestion de flotte de velos electriques a Yaounde** — Application full-stack pour le suivi temps reel, la geolocalisation et la maintenance de velos en libre-service.
 
 ---
 
-## 🏗️ Architecture
+## Vue d'ensemble
+
+EcoTrack est une plateforme de gestion de flotte de velos electriques conçue pour le contexte urbain de Yaounde (Cameroun). Elle permet aux operateurs de visualiser la flotte sur une carte interactive, surveiller les niveaux de batterie, ajouter/supprimer des velos, et uploader des photos — le tout avec des mises a jour temps reel via WebSocket.
+
+---
+
+## Architecture
 
 ```
 EcoTrack/
@@ -38,7 +38,7 @@ EcoTrack/
 
 ---
 
-## 🛠️ Stack Technique
+## Stack Technique
 
 | Couche | Technologies |
 |--------|--------------|
@@ -48,31 +48,31 @@ EcoTrack/
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 ### Backend (API REST + WebSocket)
 
-- **CRUD Vélos** : `GET/POST/PUT/DELETE /api/bikes`
-- **Mise à jour batterie** : `PUT /api/bikes/{id}/battery` → diffusion temps réel via `/topic/bikes`
+- **CRUD Velos** : `GET/POST/PUT/DELETE /api/bikes`
+- **Mise a jour batterie** : `PUT /api/bikes/{id}/battery` → diffusion temps reel via `/topic/bikes`
 - **Upload d'images** : `POST /api/bikes/upload` (multipart, max 10MB) → servi statiquement sous `/uploads/**`
 - **WebSocket STOMP** : Endpoint `/ws-ecotrack` (SockJS) — topics `/topic/bikes` et `/topic/bikes/delete`
-- **Sécurité** : Basic Auth (utilisateur `yve` / `ecotrack237`), CORS configuré pour `localhost:5173`
+- **Securite** : Basic Auth (utilisateur `yve` / `ecotrack237`), CORS configuré pour `localhost:5173`
 - **Console H2** : Accessible sur `/h2-console` (dev)
-- **Données de démo** : 20 vélos générés au démarrage autour de Yaoundé (Bastos, Tsinga, Mvan)
+- **Donnees de demo** : 20 velos générés au démarrage autour de Yaoundé (Bastos, Tsinga, Mvan)
 
 ### Frontend (React + Leaflet)
 
-- **Carte interactive** : OpenStreetMap (style Humanitarian) centrée sur Yaoundé (3.848, 11.502)
+- **Carte interactive** : OpenStreetMap (style Humanitarian) centree sur Yaounde (3.848, 11.502)
 - **Marqueurs dynamiques** : Vert (batterie ≥ 20%), Rouge (batterie < 20%)
-- **Popups riches** : Photo, modèle, numéro de série, barre de batterie, bouton suppression
+- **Popups riches** : Photo, modele, numero de serie, barre de batterie, bouton suppression
 - **Sidebar** : Liste filtrable (tous / batteries faibles), centrage sur clic
 - **Modal d'ajout** : Formulaire complet + **drag & drop upload d'image** (aperçu nom de fichier)
-- **Footer** : Stats flotte, alertes batterie, liens contact (téléphone, GitHub), utilisateur connecté
-- **Auth HTTP Basic** : Header `Authorization` injecté globalement via Axios
+- **Footer** : Stats flotte, alertes batterie, liens contact (telephone, GitHub), utilisateur connecte
+- **Auth HTTP Basic** : Header `Authorization` injecte globalement via Axios
 
 ---
 
-## 🚀 Démarrage Rapide
+## Démarrage Rapide
 
 ### Prérequis
 
@@ -105,7 +105,7 @@ npm run dev
 
 ---
 
-## 📡 API Reference
+## API Reference
 
 ### Base URL
 ```
@@ -148,7 +148,7 @@ Authorization: Basic eXZlOmVjb3RyYWNrMjM3  # base64("yve:ecotrack237")
 
 ---
 
-## 🔌 WebSocket (Temps Réel)
+## WebSocket (Temps Reel)
 
 ### Connexion
 ```
@@ -172,11 +172,11 @@ const client = new Client({
   onConnect: () => {
     client.subscribe('/topic/bikes', (msg) => {
       const bike = JSON.parse(msg.body);
-      console.log('🔋 Batterie mise à jour :', bike);
+      console.log('Batterie mise a jour :', bike);
     });
     client.subscribe('/topic/bikes/delete', (msg) => {
       const id = JSON.parse(msg.body);
-      console.log('🗑️ Vélo supprimé :', id);
+      console.log('Velo supprime :', id);
     });
   }
 });
@@ -185,7 +185,7 @@ client.activate();
 
 ---
 
-## 🗄️ Base de Données
+## Base de Donnees
 
 ### Schéma (H2 / PostgreSQL)
 ```sql
@@ -213,7 +213,7 @@ spring.jpa.hibernate.ddl-auto=update
 
 ---
 
-## 🔐 Sécurité
+## Securite
 
 - **Basic Auth** statique en mémoire (`InMemoryUserDetailsManager`)
 - **CSRF désactivé** (API stateless)
@@ -221,11 +221,11 @@ spring.jpa.hibernate.ddl-auto=update
 - **Ressources publiques** : `/uploads/**` accessible sans auth
 - **Mots de passe** : Encodés via `User.withDefaultPasswordEncoder()` (BCrypt)
 
-> ⚠️ **Production** : Remplacer par JWT/OAuth2, configurer CORS strict, activer HTTPS, utiliser secrets manager.
+> **Production** : Remplacer par JWT/OAuth2, configurer CORS strict, activer HTTPS, utiliser secrets manager.
 
 ---
 
-## 📁 Structure des Dossiers (Détail)
+## Structure des Dossiers (Detail)
 
 ### Backend
 ```
@@ -260,7 +260,7 @@ src/
 
 ---
 
-## 🧪 Tests
+## Tests
 
 ### Backend
 ```bash
@@ -278,7 +278,7 @@ npm run lint        # ESLint (React Hooks, Refresh)
 
 ---
 
-## 📦 Build Production
+## Build Production
 
 ### Backend (JAR)
 ```bash
@@ -319,7 +319,7 @@ EXPOSE 80
 
 ---
 
-## 🌍 Contexte & Localisation
+## Contexte & Localisation
 
 - **Ville cible** : Yaoundé, Cameroun (coordonnées par défaut : 3.8480° N, 11.5021° E)
 - **Quartiers couverts** (données test) : Bastos, Tsinga, Mvan
@@ -328,7 +328,7 @@ EXPOSE 80
 
 ---
 
-## 🤝 Contribution
+## Contribution
 
 1. Fork le repo
 2. Crée une branche : `git checkout -b feature/ma-fonctionnalite`
@@ -343,13 +343,13 @@ EXPOSE 80
 
 ---
 
-## 📄 Licence
+## Licence
 
 Projet personnel — **Yve Thiakou** (@docteur-yvelab sur GitHub)
 
 ---
 
-## 📞 Contact & Liens
+## Contact & Liens
 
 - **GitHub** : [github.com/docteur-yvelab](https://github.com/docteur-yvelab)
 - **Téléphone** : +237 6 94 63 73 42
@@ -357,4 +357,4 @@ Projet personnel — **Yve Thiakou** (@docteur-yvelab sur GitHub)
 
 ---
 
-> **EcoTrack YDE** — *Pour une mobilité verte et connectée à Yaoundé* 🚲🇨🇲
+> **EcoTrack YDE** — *Pour une mobilité verte et connectée à Yaoundé*
