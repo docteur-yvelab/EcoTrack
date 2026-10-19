@@ -38,3 +38,6 @@ Le projet est configuré pour être déployable sur des plateformes comme **Hero
 
 ---
 *Ce projet est une démonstration technique et ne doit pas être utilisé en production sans une configuration de sécurité avancée (JWT, SSL).*
+
+
+
